@@ -1,0 +1,34 @@
+---
+import Navigation from "@/components/Navigation";
+
+
+---
+
+<Navigation client:load />
+
+<script>
+  // Cart count management
+  function getCartCount() {
+    try {
+      const cartItems = JSON.parse(localStorage.getItem('emart-cart') || '[]');
+      return cartItems.reduce((sum: number, item: any) => sum + (item.qty || 0), 0);
+    } catch (error) {
+      console.error('Error getting cart count:', error);
+      return 0;
+    }
+  }
+
+  // Update cart count in the navigation
+  function updateNavigationCartCount() {
+    const cartCount = getCartCount();
+    // Trigger a custom event to update the React component
+    window.dispatchEvent(new CustomEvent('cartUpdated', { detail: { count: cartCount } }));
+  }
+
+  // Update cart count on page load and when storage changes
+  document.addEventListener('DOMContentLoaded', updateNavigationCartCount);
+  window.addEventListener('storage', updateNavigationCartCount);
+  
+  // Update cart count periodically
+  setInterval(updateNavigationCartCount, 1000);
+</script>

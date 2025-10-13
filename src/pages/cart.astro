@@ -1,0 +1,10 @@
+---
+import CartView from '@/components/CardView';
+import Layout from '../layouts/Layout.astro';
+import { getAllProducts } from '../lib/products';
+
+const products = getAllProducts();
+---
+<Layout title="ElectroMart • Cart">
+  <CartView client:load products={products} />
+</Layout>

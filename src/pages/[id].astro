@@ -1,0 +1,19 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getById, getAllProducts } from '@/lib/products';
+import ProductDetail from '@/components/ProductDetail.tsx';
+
+export async function getStaticPaths() {
+  const products = getAllProducts();
+  return products.map((product) => ({
+    params: { id: product.id },
+  }));
+}
+
+const { id } = Astro.params;
+const product = getById(String(id));
+if (!product) throw new Error('Product not found');
+---
+<Layout title={`ElectroMart • ${product.name}`}>
+  <ProductDetail product={product} client:load />
+</Layout>

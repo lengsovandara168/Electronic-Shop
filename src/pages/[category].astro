@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getByCategory } from '../lib/products';
+import CategoryPageWithSearch from '@/components/CategoryPageWithSearch.tsx';
+
+export async function getStaticPaths() {
+  return [
+    { params: { category: 'phones' } },
+    { params: { category: 'computers' } },
+    { params: { category: 'accessories' } },
+  ];
+}
+
+const { category } = Astro.params as { category: 'phones'|'computers'|'accessories' };
+const items = getByCategory(category);
+
+const pageTitle = `ElectroMart • ${category}`;
+---
+
+<Layout title={pageTitle}>
+  <CategoryPageWithSearch 
+    client:load 
+    category={category}
+    allProducts={items}
+  />
+</Layout>
