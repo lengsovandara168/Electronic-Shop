@@ -1,19 +1,21 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { getById, getAllProducts } from '@/lib/products';
 import ProductDetail from '@/components/ProductDetail.tsx';
 
 export async function getStaticPaths() {
-  const products = getAllProducts();
-  return products.map((product) => ({
-    params: { id: product.id },
+  // Pre-build detail pages for all DummyJSON products to increase coverage
+  const res = await fetch('https://dummyjson.com/products?limit=500');
+  const json = res.ok ? await res.json() : { products: [] };
+  const allItems: any[] = Array.isArray(json.products) ? json.products : [];
+  const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+  return allItems.map((it: any) => ({
+    params: { id: `phn-${normalize(String(it.title ?? ''))}-${normalize(String(it.brand ?? ''))}-${it.id}` },
   }));
 }
 
 const { id } = Astro.params;
-const product = getById(String(id));
-if (!product) throw new Error('Product not found');
+const pageTitle = `Tri-god • ${id}`;
 ---
-<Layout title={`ElectroMart • ${product.name}`}>
-  <ProductDetail product={product} client:load />
+<Layout title={pageTitle}>
+  <ProductDetail client:load />
 </Layout>

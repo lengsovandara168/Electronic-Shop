@@ -1,9 +1,38 @@
 ---
-// Footer component for ElectroMart
 ---
 
-<footer class="bg-gray-50 border-t border-gray-200 mt-auto">
-  <div class="max-w-5xl mx-auto px-3 py-3 text-xs text-gray-600 text-center">
-    © {new Date().getFullYear()} ElectroMart
+<footer class="bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 border-t border-purple-500/20 mt-auto">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <h3 class="text-white font-bold text-lg mb-4">About Trio-God Store</h3>
+        <p class="text-gray-300 text-sm leading-relaxed">
+          Your one-stop shop for the latest electronics, from smartphones to computers and accessories.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-white font-bold text-lg mb-4">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/products" class="text-gray-300 hover:text-purple-400 transition-colors">All Products</a></li>
+          <li><a href="/phones" class="text-gray-300 hover:text-purple-400 transition-colors">Phones</a></li>
+          <li><a href="/computers" class="text-gray-300 hover:text-purple-400 transition-colors">Computers</a></li>
+          <li><a href="/accessories" class="text-gray-300 hover:text-purple-400 transition-colors">Accessories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-white font-bold text-lg mb-4">Customer Service</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="text-gray-300 hover:text-purple-400 transition-colors">Contact Us</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-purple-400 transition-colors">Shipping Info</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-purple-400 transition-colors">Returns</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-purple-400 transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-purple-500/20 pt-6">
+      <p class="text-center text-gray-400 text-sm">
+        © {new Date().getFullYear()} Trio-God Store. All rights reserved.
+      </p>
+    </div>
   </div>
 </footer>
