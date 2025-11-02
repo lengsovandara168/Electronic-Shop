@@ -60,7 +60,8 @@ export default function Navigation() {
               >
                 <img
                   className="w-4 h-4 sm:w-5 sm:h-5 lg:w-10 lg:h-10 text-white rounded-full"
-                  src="/public/profile.png"
+                  src="/profile.png"
+                  alt="Logo"
                 />
               </div>
               <span
