@@ -53,10 +53,13 @@ export default function ProductCard({ p }: Props) {
     e.preventDefault();
     e.stopPropagation();
     setIsWishlisted(!isWishlisted);
-    toast.success(isWishlisted ? "Removed from wishlist" : "Added to wishlist", {
-      icon: isWishlisted ? "💔" : "❤️",
-      duration: 2000,
-    });
+    toast.success(
+      isWishlisted ? "Removed from wishlist" : "Added to wishlist",
+      {
+        icon: isWishlisted ? "💔" : "❤️",
+        duration: 2000,
+      }
+    );
   };
 
   return (
@@ -73,10 +76,7 @@ export default function ProductCard({ p }: Props) {
         whileHover={{ y: -8 }}
         className="h-full"
       >
-        <a
-          href={`/${p.id}`}
-          className="no-underline text-inherit block h-full"
-        >
+        <a href={`/${p.id}`} className="no-underline text-inherit block h-full">
           <Card className="group h-full hover:border-indigo-200 hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
             <div className="relative overflow-hidden bg-gray-50">
               <ProductImage
@@ -86,22 +86,9 @@ export default function ProductCard({ p }: Props) {
               >
                 <StockBadge stock={p.stock} />
               </ProductImage>
-              
+
               {/* Action Buttons Overlay */}
               <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="rounded-full shadow-lg"
-                  onClick={handleWishlist}
-                >
-                  <Heart 
-                    className={cn(
-                      "w-4 h-4 transition-colors",
-                      isWishlisted && "fill-red-500 text-red-500"
-                    )} 
-                  />
-                </Button>
                 <Button
                   variant="secondary"
                   size="icon"
@@ -114,10 +101,7 @@ export default function ProductCard({ p }: Props) {
 
               {/* Category Badge */}
               {p.category && (
-                <Badge 
-                  variant="secondary" 
-                  className="absolute top-3 left-3"
-                >
+                <Badge variant="secondary" className="absolute top-3 left-3">
                   {p.category}
                 </Badge>
               )}
@@ -128,9 +112,7 @@ export default function ProductCard({ p }: Props) {
                 <h3 className="text-lg font-semibold mb-1 line-clamp-2 text-gray-900 group-hover:text-indigo-600 transition-colors min-h-[3.5rem]">
                   {p.name}
                 </h3>
-                <p className="text-sm text-gray-600 mb-3">
-                  {p.brand}
-                </p>
+                <p className="text-sm text-gray-600 mb-3">{p.brand}</p>
               </div>
 
               <RatingStars
@@ -155,7 +137,11 @@ export default function ProductCard({ p }: Props) {
                 disabled={p.stock === 0}
               >
                 <ShoppingCart className="w-4 h-4 mr-2" />
-                {isAdded ? "Added!" : p.stock === 0 ? "Out of Stock" : "Add to Cart"}
+                {isAdded
+                  ? "Added!"
+                  : p.stock === 0
+                  ? "Out of Stock"
+                  : "Add to Cart"}
               </Button>
             </CardFooter>
           </Card>
