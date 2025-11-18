@@ -6,7 +6,7 @@
   }
   
   body {
-    @apply antialiased;
+    @apply antialiased bg-gray-50;
   }
   
   /* Custom scrollbar */
@@ -19,11 +19,16 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-purple-500 to-blue-500 rounded-full;
+    @apply bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply from-purple-600 to-blue-600;
+    @apply from-indigo-600 to-purple-600;
+  }
+  
+  /* Better focus states */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-indigo-500 ring-offset-2;
   }
 }
 
@@ -40,5 +45,15 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20;
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
   }
 }

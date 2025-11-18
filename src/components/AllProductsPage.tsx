@@ -43,7 +43,13 @@ function AllProductsInner() {
       gsap.fromTo(
         searchBarRef.current,
         { opacity: 0, scale: 0.9 },
-        { opacity: 1, scale: 1, duration: 0.6, delay: 0.3, ease: "back.out(1.7)" }
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          delay: 0.3,
+          ease: "back.out(1.7)",
+        }
       );
     }
   }, []);
@@ -175,7 +181,8 @@ function AllProductsInner() {
             Discover Our Collection
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Browse through our curated selection of smartphones, computers, and accessories
+            Browse through our curated selection of smartphones, computers, and
+            accessories
           </p>
         </div>
 
@@ -188,7 +195,11 @@ function AllProductsInner() {
             } rounded-2xl transition-all duration-300`}
           >
             <div className="absolute left-5 top-1/2 -translate-y-1/2">
-              <Search className={`w-6 h-6 ${isSearchFocused ? 'text-purple-500' : 'text-gray-400'} transition-colors`} />
+              <Search
+                className={`w-6 h-6 ${
+                  isSearchFocused ? "text-purple-500" : "text-gray-400"
+                } transition-colors`}
+              />
             </div>
             <input
               type="text"
@@ -211,7 +222,11 @@ function AllProductsInner() {
           </div>
           {searchQuery && (
             <p className="text-center mt-4 text-gray-600">
-              Found <span className="font-bold text-purple-600">{filtered.length}</span> result{filtered.length !== 1 ? 's' : ''}
+              Found{" "}
+              <span className="font-bold text-purple-600">
+                {filtered.length}
+              </span>{" "}
+              result{filtered.length !== 1 ? "s" : ""}
             </p>
           )}
         </div>
@@ -227,7 +242,8 @@ function AllProductsInner() {
             <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-8 max-w-md mx-auto">
               <p className="text-red-600 text-lg font-semibold">
                 {String(
-                  (productsQuery.error as any)?.message || "Failed to load products"
+                  (productsQuery.error as Error)?.message ||
+                    "Failed to load products"
                 )}
               </p>
             </div>
@@ -242,8 +258,8 @@ function AllProductsInner() {
               onClick={loadMore}
               className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-lg font-bold rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 transform"
             >
-              Load More Products ({Math.min(filtered.length - visible.length, PAGE_SIZE)}{" "}
-              remaining)
+              Load More Products (
+              {Math.min(filtered.length - visible.length, PAGE_SIZE)} remaining)
             </button>
             <div ref={sentinelRef} className="h-1 w-full" />
           </div>
