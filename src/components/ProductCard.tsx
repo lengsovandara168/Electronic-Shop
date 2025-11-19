@@ -93,6 +93,19 @@ export default function ProductCard({ p }: Props) {
                   variant="secondary"
                   size="icon"
                   className="rounded-full shadow-lg"
+                  onClick={handleWishlist}
+                >
+                  <Heart
+                    className={cn(
+                      "w-4 h-4 transition-colors",
+                      isWishlisted && "fill-red-500 text-red-500"
+                    )}
+                  />
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="rounded-full shadow-lg"
                   onClick={handleQuickView}
                 >
                   <Eye className="w-4 h-4" />
